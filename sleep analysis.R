@@ -121,15 +121,6 @@ df_clean <- df %>%
 df %>%
   select(score_wake_up, score_tired_after_waking, score_evening_tiredness, score_best_time, score_chronotype) %>%
   summary()
-# fixing scoring based on actual wording 
-df <- df %>%
-  mutate(score_chronotype = case_when(
-    p30429 == "Definitely a morning-type" ~ 6,
-    p30429 == "Rather more a morning-type than an evening-type" ~ 4,
-    p30429 == "Rather more an evening-type than a morning-type" ~ 2,
-    p30429 == "Definitely an evening-type" ~ 0,
-    TRUE ~ NA_real_
-  ))
 # recalculate final rmeq score 
 df <- df %>%
   mutate(rmeq_score = score_wake_up +
