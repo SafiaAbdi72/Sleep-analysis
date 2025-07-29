@@ -113,5 +113,20 @@ ggplot(df_clean, aes(x = age, y = rmeq_score, color = sex)) +
     x = "Age at Assessment",
     y = "rMEQ Score"
   )
+# boxplot of rmeq score by sex 
+ggplot(df_clean, aes(x = sex, y = rmeq_score, fill = sex)) +
+  geom_boxplot() +
+  theme_minimal() +
+  labs(title = "Distribution of rMEQ Scores by Sex",
+       x = "Sex",
+       y = "rMEQ Score")
+# density plot
+ggplot(df_clean, aes(x = rmeq_score, color = sex, fill = sex)) +
+  geom_density(alpha = 0.3) +
+  theme_minimal() +
+  labs(title = "Density Plot of rMEQ Scores by Sex",
+       x = "rMEQ Score",
+       y = "Density")
+
 
 
