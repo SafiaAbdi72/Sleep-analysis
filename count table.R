@@ -43,3 +43,18 @@ chronotype_df <- as.data.frame.matrix(chronotype_table)
 print(chronotype_table)
 
 chronotype_df <- as.data.frame.matrix(chronotype_table)
+----------------------------------------------------------
+chronotype_table <- table(
+  `Sleep Online` = merged_chrono$chronotype_online,
+  `Sleep Assessment Centre` = merged_chrono$chronotype_assess
+)
+# Convert to data frame while preserving axis labels
+chronotype_df <- as.data.frame.matrix(chronotype_table)
+
+# Move rownames to a proper column called "Sleep Online"
+chronotype_df <- tibble::rownames_to_column(chronotype_df, var = "Sleep Online")
+
+# Optional: clean up column names for clarity
+colnames(chronotype_df)[-1] <- paste("Assessment:", colnames(chronotype_df)[-1])
+write.csv(chronotype_df, "~/Desktop/chronotype_overlap_table.csv", row.names = FALSE)
+
