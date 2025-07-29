@@ -12,7 +12,7 @@ view(sleep_assessment)
 view(sleep_online)
 view(covariates)
 # Merge age and sex into sleep_online
-sleep_online <- sleep_online %>%
+df <- sleep_online %>%
   left_join(
     covariates %>% select(eid, p31, p21022),
     by = "eid"
@@ -20,9 +20,6 @@ sleep_online <- sleep_online %>%
   rename(
     sex = p31,
     age = p21022
-  ) %>%
-  mutate(
-    sex = factor(sex, levels = c(0, 1), labels = c("Female", "Male"))
   )
 #check if merge was succesful 
 names(sleep_online)
