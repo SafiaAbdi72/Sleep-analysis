@@ -24,10 +24,10 @@ df <- sleep_online %>%
 #check if merge was succesful 
 names(sleep_online)
 # Convert empty strings to NA 
-sleep_online <- sleep_online %>%
+df <- df %>%
   mutate(across(where(is.character), ~ na_if(., "")))
 # rmeq scoring
-df <- sleep_online %>%
+df <- df %>%
   mutate(
     score_wake_up = case_when(
       p30425 == "5:00am - 6:30am" ~ 5,
@@ -71,8 +71,6 @@ df <- sleep_online %>%
       p30429 == "Definitely an evening-type" ~ 0,
       TRUE ~ NA_real_
     ),
-    
-    rmeq_score = rowSums(across(starts_with("score_")), na.rm = TRUE)
   )
 # only calculate rmeq score if all 5 scores are present 
 df <- df %>%
@@ -97,16 +95,6 @@ df <- df %>%
 summary(df$rmeq_score)
 # check column names 
 names(sleep_online)
-# filter complete cases 
-df_clean <- df %>%
-  filter(!is.na(age), !is.na(rmeq_score), !is.na(sex))
-# plot rmeq scores 
-library(ggplot2)
-ggplot(df, aes(x = age, y = rmeq_score, color = sex)) +
-  geom_point(alpha = 0.4) +
-  geom_smooth(method = "lm", se = FALSE) +
-  theme_minimal() +
-  labs(title = "rMEQ Score vs Age by Sex", x = "Age at Assessment", y = "RMEQ Score")
 # filter out empty rows
 df_clean <- df %>%
   filter(
@@ -114,22 +102,8 @@ df_clean <- df %>%
     !is.na(rmeq_score),
     !is.na(sex)
   )
-# check raw scoring columns 
-df %>%
-  select(score_wake_up, score_tired_after_waking, score_evening_tiredness, score_best_time, score_chronotype) %>%
-  summary()
-# recalculate final rmeq score 
-df <- df %>%
-  mutate(rmeq_score = score_wake_up +
-           score_tired_after_waking +
-           score_evening_tiredness +
-           score_best_time +
-           score_chronotype)
-summary(df$rmeq_score)
-# plot rmeq score v age/sex
-df_clean <- df %>%
-  filter(!is.na(age), !is.na(rmeq_score), !is.na(sex))
 
+# plot rmeq scores 
 ggplot(df_clean, aes(x = age, y = rmeq_score, color = sex)) +
   geom_point(alpha = 0.4) +
   geom_smooth(method = "lm", se = FALSE) +
@@ -139,15 +113,5 @@ ggplot(df_clean, aes(x = age, y = rmeq_score, color = sex)) +
     x = "Age at Assessment",
     y = "rMEQ Score"
   )
-df_clean <- df %>%
-  filter(!is.na(age), !is.na(rmeq_score))
 
-ggplot(df_clean, aes(x = age, y = rmeq_score)) +
-  geom_point(alpha = 0.4) +
-  geom_smooth(method = "lm", se = FALSE) +
-  theme_minimal() +
-  labs(
-    title = "rMEQ Score vs Age",
-    x = "Age at Assessment",
-    y = "rMEQ Score"
-  )
+
