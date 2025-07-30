@@ -1,4 +1,4 @@
-# 1. Prepare Sleep Online: select relevant columns and remove blanks
+# 1.Prepare Sleep Online: select relevant columns and remove blank
 sleep_online_chrono <- sleep_online %>%
   mutate(p30429 = na_if(p30429, "")) %>%
   mutate(

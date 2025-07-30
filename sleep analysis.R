@@ -21,8 +21,6 @@ df <- sleep_online %>%
     sex = p31,
     age = p21022
   )
-#check if merge was succesful 
-names(sleep_online)
 # Convert empty strings to NA 
 df <- df %>%
   mutate(across(where(is.character), ~ na_if(., "")))
@@ -94,7 +92,7 @@ df <- df %>%
 # check rmeq scoring worked 
 summary(df$rmeq_score)
 # check column names 
-names(sleep_online)
+names(df)
 # filter out empty rows
 df_clean <- df %>%
   filter(
