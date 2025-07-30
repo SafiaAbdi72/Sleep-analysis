@@ -14,13 +14,13 @@ sleep_online_chrono <- sleep_online %>%
 
 # 2. Prepare Sleep Assessment Centre: select relevant columns and remove blanks
 sleep_assess_chrono <- sleep_assessment %>%
-  mutate(p1180_i2 = na_if(p1180_i2, "")) %>%
+  mutate(p1180_i0 = na_if(p1180_i0, "")) %>%
   mutate(
     chronotype_assess = case_when(
-      p1180_i2 == "Definitely a 'morning' person" ~ "Definitely morning",
-      p1180_i2 == "More a 'morning' than 'evening' person" ~ "Rather morning",
-      p1180_i2 == "More an 'evening' than a 'morning' person" ~ "Rather evening",
-      p1180_i2 == "Definitely an 'evening' person" ~ "Definitely evening",
+      p1180_i0 == "Definitely a 'morning' person" ~ "Definitely morning",
+      p1180_i0 == "More a 'morning' than 'evening' person" ~ "Rather morning",
+      p1180_i0 == "More an 'evening' than a 'morning' person" ~ "Rather evening",
+      p1180_i0 == "Definitely an 'evening' person" ~ "Definitely evening",
       TRUE ~ NA_character_
     )
   ) %>%
@@ -47,6 +47,7 @@ chronotype_table <- table(
   `Sleep Online` = merged_chrono$chronotype_online,
   `Sleep Assessment Centre` = merged_chrono$chronotype_assess
 )
+
 # Convert to data frame while preserving axis labels
 chronotype_df <- as.data.frame.matrix(chronotype_table)
 
@@ -55,5 +56,7 @@ chronotype_df <- tibble::rownames_to_column(chronotype_df, var = "Sleep Online")
 
 # Optional: clean up column names for clarity
 colnames(chronotype_df)[-1] <- paste("Assessment:", colnames(chronotype_df)[-1])
+
 write.csv(chronotype_df, "~/Desktop/chronotype_overlap_table.csv", row.names = FALSE)
+
 
