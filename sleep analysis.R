@@ -1,5 +1,3 @@
-hi
-
 # install necessary packages
 install.packages("tidyverse")
 install.packages("ggpubr")
