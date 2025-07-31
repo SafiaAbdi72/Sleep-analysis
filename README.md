@@ -10,11 +10,11 @@
 | **Rather Evening**                  | 5,651               | 1,068              | 21,157          | 5,017           |
 | **Rather Morning**                  | 1,193               | 12,751             | 13,222          | 37,231          |
 
-- As seen in figure 1, participants who reported being Definitely Morning or Rather Morning online often reported similar morningness in the assessment centre, indicating moderate to strong self-report consistency over time.
+- As seen in figure 1, participants who reported being 'Definitely Morning' or 'Rather Morning' online often reported similar morningness in the assessment centre, indicating moderate to strong self-report consistency over time.
 
-- There is some asymmetry; for example, a notable portion of those who self-identified as Rather Morning online later identified as Definitely Morning in the assessment centre.
+- There is some asymmetry; for example, a notable portion of those who self-identified as 'Rather Morning' online later identified as 'Definitely Morning' in the assessment centre.
 
-- Those who reported being Definitely Evening online also frequently reported Rather Evening or Definitely Evening later, again suggesting consistency, though with some shift toward less extreme responses.
+- Those who reported being 'Definitely Evening' online also frequently reported 'Rather Evening' or 'Definitely Evening' later, again suggesting consistency, though with some shift toward less extreme responses.
 
 - These results highlight that while most individuals report consistent sleep preferences, some variability over time or context (online vs interview) exists.
 
