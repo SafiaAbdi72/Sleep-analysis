@@ -22,7 +22,7 @@
 
 
 ## Self-Reported Chronotype vs rMEQ-Derived Chronotype (Online)
-### fig 2: self-reported vs rMEQ chronotype
+### Fig 2: self-reported vs rMEQ chronotype
 
 | Self-Reported ↓ / rMEQ-Based → | Definitely evening | Definitely morning | Intermediate | Rather evening | Rather morning |
 |-------------------------------|--------------------:|--------------------:|-------------:|----------------:|----------------:|
@@ -34,5 +34,13 @@
 
 
 I also compared each participant’s self-reported chronotype (the single question in the Sleep Online survey) to their rMEQ-derived chronotype, calculated using five specific questions assessing sleep timing, alertness, and preferences.
+There is strong agreement for the extreme types:
 
-Despite being collected at the same time, some discrepancies emerged. While many individuals’ self-reported and calculated chronotypes aligned (e.g., someone who said they were “Definitely morning” also scored within the top rMEQ range), others showed mismatches. This may indicate limitations in self-awareness or biases in self-reporting, especially for borderline chronotypes.
+- Most people who self-reported as "Definitely Morning" were classified as either Definitely Morning or Rather Morning by the rMEQ score.
+
+- Similarly, those who self-reported as "Definitely Evening" were largely classified as Rather Evening or Definitely Evening.
+
+- However, there is also notable discrepancy:
+  -  A large number of participants who self-identified as "Rather Morning" were classified as Intermediate (50,541) by rMEQ, suggesting that self-perception may overestimate morningness
+  -  A similar pattern exists for those who self-identified as "Rather Evening", many of whom were actually Intermediate per rMEQ.
+  -  Only a small number of participants were completely mismatched (e.g. someone saying "Definitely Morning" but scoring "Definitely Evening").
