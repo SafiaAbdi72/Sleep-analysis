@@ -93,6 +93,9 @@ df <- df %>%
 summary(df$rmeq_score)
 # check column names 
 names(df)
+
+### save df as rmeq_scorse.csv
+
 # filter out empty rows
 df_clean <- df %>%
   filter(
