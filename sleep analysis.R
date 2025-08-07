@@ -12,7 +12,7 @@ view(sleep_assessment)
 view(sleep_online)
 view(covariates)
 # Merge age and sex into sleep_online
-df <- sleep_online %>%
+rmeq_scor <- sleep_online %>%
   left_join(
     covariates %>% select(eid, p31, p21022),
     by = "eid"
@@ -22,10 +22,10 @@ df <- sleep_online %>%
     age = p21022
   )
 # Convert empty strings to NA 
-df <- df %>%
+rmeq_scor <- rmeq_scor %>%
   mutate(across(where(is.character), ~ na_if(., "")))
 # rmeq scoring
-df <- df %>%
+rmeq_scor <- rmeq_scor %>%
   mutate(
     score_wake_up = case_when(
       p30425 == "5:00am - 6:30am" ~ 5,
@@ -71,7 +71,7 @@ df <- df %>%
     ),
   )
 # only calculate rmeq score if all 5 scores are present 
-df <- df %>%
+rmeq_scor <- rmeq_scor %>%
   mutate(
     rmeq_score = if_else(
       !is.na(score_wake_up) &
@@ -97,7 +97,7 @@ names(df)
 ### save df as rmeq_scorse.csv
 
 # filter out empty rows
-df_clean <- df %>%
+rmeq_scoring <- rmeq_scor %>%
   filter(
     !is.na(age),
     !is.na(rmeq_score),
