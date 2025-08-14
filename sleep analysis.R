@@ -104,6 +104,17 @@ rmeq_scoring <- rmeq_scor %>%
     !is.na(sex)
   )
 
+# Create categorical chronotype from rMEQ score
+rmeq_scoring <- rmeq_scoring %>%
+  mutate(rmeq_chronotype = case_when(
+    rmeq_score >= 22 ~ "Definitely morning",
+    rmeq_score >= 18 & rmeq_score <= 21 ~ "Rather morning",
+    rmeq_score >= 12 & rmeq_score <= 17 ~ "Neither",
+    rmeq_score >= 8  & rmeq_score <= 11 ~ "Rather evening",
+    rmeq_score <= 7  ~ "Definitely evening",
+    TRUE ~ NA_character_
+  ))
+
 # plot rmeq scores 
 ggplot(df_clean, aes(x = age, y = rmeq_score, color = sex)) +
   geom_point(alpha = 0.4) +
@@ -128,6 +139,31 @@ ggplot(df_clean, aes(x = rmeq_score, color = sex, fill = sex)) +
   labs(title = "Density Plot of rMEQ Scores by Sex",
        x = "rMEQ Score",
        y = "Density")
+# sleep assess chrono and sleep online chrono
+## Sleep Assessment Centre
+sleep_assess_chrono <- sleep_assessment %>%
+  select(eid, p1180_i0) %>%
+  filter(p1180_i0 != "") %>%
+  mutate(chronotype_assess = case_when(
+    p1180_i0 == "Definitely a 'morning' person" ~ "Definitely morning",
+    p1180_i0 == "More a 'morning' than 'evening' person" ~ "Rather morning",
+    p1180_i0 == "More an 'evening' than a 'morning' person" ~ "Rather evening",
+    p1180_i0 == "Definitely an 'evening' person" ~ "Definitely evening",
+    TRUE ~ NA_character_
+  )) %>%
+  select(eid, chronotype_assess)
 
+## Sleep Online
+sleep_online_chrono <- sleep_online %>%
+  select(eid, p30429) %>%
+  filter(p30429 != "") %>%
+  mutate(chronotype_online = case_when(
+    p30429 == "Definitely a morning-type" ~ "Definitely morning",
+    p30429 == "Rather more a morning-type than an evening-type" ~ "Rather morning",
+    p30429 == "Rather more an evening-type than a morning-type" ~ "Rather evening",
+    p30429 == "Definitely an evening-type" ~ "Definitely evening",
+    TRUE ~ NA_character_
+  )) %>%
+  select(eid, chronotype_online)
 
 
